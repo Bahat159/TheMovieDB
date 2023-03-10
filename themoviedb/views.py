@@ -57,7 +57,6 @@ def discover_tv_details(request):
 
 def find_movie(requests, external_id):
     finder_url = base_url+f'/find/{external_id}?api_key={API_KEY}'
-
     try:
         my_request = requests.get(finder_url)
         if my_request.ok:
@@ -86,6 +85,18 @@ def genre_tv_list(request):
     genre_url = base_url+genre_tv_url
     try:
         my_request = requests.get(genre_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+def get_tv_details(request, tv_id):
+    get_tv_url = base_url+f'/tv/{tv_id}?api_key={API_KEY}'
+    try:
+        my_request = requests.get(get_tv_url)
         if my_request.ok:
             parse_data = my_request.json()
             return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
@@ -183,10 +194,11 @@ def get_trending(request):
         return HttpResponse('Exception Occured')
 
 
-def get_review(request, review_id):
+def get_movie_review(request, review_id):
     review_url = base_url+f'/review/{review_id}?api_key={API_KEY}'
     try:
         my_request = requests.get(review_url)
+        print(my_request)
         if my_request.ok:
             parse_data = my_request.json()
             return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
