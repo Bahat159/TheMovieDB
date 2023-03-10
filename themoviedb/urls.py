@@ -12,15 +12,19 @@ urlpatterns = [
 
 
     path('tv/', views.genre_tv_list,  name='Genre TV List'),
+    path('tv/<int:tv_id>', views.get_tv_details,  name='Get TV Details'),
+
 
     path('movie/', views.genre_movie_list,  name='Genre Movie List'),
     path('movie/<int:movie_id>/<int:page_number>', views.get_movie_id,  name='Movie ID'),
     path('movie/<int:movie_id>/credits', views.get_movie_credit,  name='Movie Credits'),
 
+    path('list/', views.create_list,  name='Create List'),
     path('list/<int:list_id>', views.get_list,  name='Get List'),
     path('list/<int:list_id>/status', views.get_list_item_status,  name='Get List Item Status'),
 
     path('trending/', views.get_trending,  name='Get Trending'),
+    path('review/<int:review_id>', views.get_movie_review,  name='Get Movie Review'),
 
 
 ]
