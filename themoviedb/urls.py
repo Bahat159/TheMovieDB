@@ -17,6 +17,8 @@ urlpatterns = [
     path('tv/<int:tv_id>/credits', views.get_tv_credits,  name='Get TV Credits'),
     path('tv/<int:tv_id>/reviews', views.get_tv_reviews,  name='Get TV Reviews'),
     path('tv/<int:tv_id>/videos', views.get_tv_videos,  name='Get TV Videos'),
+    path('popular_tv/', views.get_popular_tv,  name='Get Popular TV Shows'),
+    path('top_rated_tv/', views.get_top_rated_tv,  name='Get Top RatednTV Shows'),
 
 
     path('movie/', views.genre_movie_list,  name='Genre Movie List'),
