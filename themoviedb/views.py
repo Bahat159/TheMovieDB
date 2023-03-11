@@ -27,6 +27,8 @@ popular_tv = f'/tv/popular?api_key={API_KEY}'
 top_rated_tv = f'/tv/top_rated?api_key={API_KEY}'
 search_url = f'/search/company?api_key={API_KEY}'
 collection_url = f'/search/collection?api_key={API_KEY}'
+keyword_url = f'/search/keyword?api_key={API_KEY}'
+search_movie_url = f'/search/movie?api_key={API_KEY}'
 
 
 
@@ -306,6 +308,32 @@ def search_collection(request):
     search_collection_url = base_url+collection_url
     try:
         my_request = requests.get(search_collection_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def search_keyword(request):
+    search_keyword_url = base_url+keyword_url
+    try:
+        my_request = requests.get(search_keyword_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def search_movie(request):
+    search_mo_url = base_url+search_movie_url
+    try:
+        my_request = requests.get(search_mo_url)
         if my_request.ok:
             parse_data = my_request.json()
             return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
