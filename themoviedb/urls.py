@@ -34,6 +34,7 @@ urlpatterns = [
 
     path('search_company/', views.search_company,  name='Search Company'),
     path('search_collection/', views.search_collection,  name='Search Collection'),
+    path('search_movie/', views.search_movie,  name='Search Movies'),
 
 
 ]
