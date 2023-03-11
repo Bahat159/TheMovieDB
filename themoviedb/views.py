@@ -93,10 +93,61 @@ def genre_tv_list(request):
     except:
         return HttpResponse('Exception Occured')
 
+def get_tv_account_state(request, tv_id):
+    tv_acc_url = base_url+f'/tv/{tv_id}/account_states?api_key={API_KEY}'
+    try:
+        my_request = requests.get(tv_acc_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
 def get_tv_details(request, tv_id):
     get_tv_url = base_url+f'/tv/{tv_id}?api_key={API_KEY}'
     try:
         my_request = requests.get(get_tv_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def get_tv_credits(request, tv_id):
+    tv_credit_url = base_url+f'/tv/{tv_id}/credits?api_key={API_KEY}'
+    try:
+        my_request = requests.get(tv_credit_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+def get_tv_reviews(request, tv_id):
+    tv_review_url = base_url+f'/tv/{tv_id}/reviews?api_key={API_KEY}'
+    try:
+        my_request = requests.get(tv_review_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def get_tv_videos(request, tv_id):
+    tv_videos_url = base_url+f'/tv/{tv_id}/videos?api_key={API_KEY}'
+    try:
+        my_request = requests.get(tv_videos_url)
         if my_request.ok:
             parse_data = my_request.json()
             return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
