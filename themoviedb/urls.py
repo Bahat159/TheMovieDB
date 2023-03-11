@@ -32,5 +32,8 @@ urlpatterns = [
     path('trending/', views.get_trending,  name='Get Trending'),
     path('review/<int:review_id>', views.get_movie_review,  name='Get Movie Review'),
 
+    path('search_company/', views.search_company,  name='Search Company'),
+    path('search_collection/', views.search_collection,  name='Search Collection'),
+
 
 ]
