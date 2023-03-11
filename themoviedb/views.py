@@ -23,6 +23,8 @@ discover_tv_url = f'/discover/tv?api_key={API_KEY}'
 genre_movie_url = f'/genre/movie/list?api_key={API_KEY}'
 genre_tv_url = f'/genre/tv/list?api_key={API_KEY}'
 trending_url = f'/trending/all/day?api_key={API_KEY}'
+popular_tv = f'/tv/popular?api_key={API_KEY}'
+top_rated_tv = f'/tv/top_rated?api_key={API_KEY}'
 
 
 
@@ -148,6 +150,32 @@ def get_tv_videos(request, tv_id):
     tv_videos_url = base_url+f'/tv/{tv_id}/videos?api_key={API_KEY}'
     try:
         my_request = requests.get(tv_videos_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def get_popular_tv(request):
+    popular_tv_url = base_url+popular_tv
+    try:
+        my_request = requests.get(popular_tv_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def get_top_rated_tv(request):
+    top_rated_tv_url = base_url+top_rated_tv
+    try:
+        my_request = requests.get(top_rated_tv_url)
         if my_request.ok:
             parse_data = my_request.json()
             return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
