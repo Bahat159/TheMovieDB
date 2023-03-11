@@ -25,6 +25,8 @@ genre_tv_url = f'/genre/tv/list?api_key={API_KEY}'
 trending_url = f'/trending/all/day?api_key={API_KEY}'
 popular_tv = f'/tv/popular?api_key={API_KEY}'
 top_rated_tv = f'/tv/top_rated?api_key={API_KEY}'
+search_url = f'/search/company?api_key={API_KEY}'
+collection_url = f'/search/collection?api_key={API_KEY}'
 
 
 
@@ -278,6 +280,32 @@ def get_movie_review(request, review_id):
     try:
         my_request = requests.get(review_url)
         print(my_request)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def search_company(request):
+    search_company_url = base_url+search_url
+    try:
+        my_request = requests.get(search_company_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def search_collection(request):
+    search_collection_url = base_url+collection_url
+    try:
+        my_request = requests.get(search_collection_url)
         if my_request.ok:
             parse_data = my_request.json()
             return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
