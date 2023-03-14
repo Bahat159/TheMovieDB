@@ -29,6 +29,7 @@ search_url = f'/search/company?api_key={API_KEY}'
 collection_url = f'/search/collection?api_key={API_KEY}'
 keyword_url = f'/search/keyword?api_key={API_KEY}'
 search_movie_url = f'/search/movie?api_key={API_KEY}'
+latest_movie = f'/movie/latest?api_key={API_KEY}'
 
 
 
@@ -193,6 +194,45 @@ def get_movie_id(request, movie_id):
     movie_id_url = base_url+f'/movie/{movie_id}?api_key={API_KEY}'
     try:
         my_request = requests.get(movie_id_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def get_movie_recommendation(request, movie_id):
+    recommend_movie_url = base_url+f'/movie/{movie_id}/recommendations?api_key={API_KEY}'
+    try:
+        my_request = requests.get(recommend_movie_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def get_movie_release_date(request, movie_id):
+    release_date_url = base_url+f'/movie/{movie_id}/release_dates?api_key={API_KEY}'
+    try:
+        my_request = requests.get(release_date_url)
+        if my_request.ok:
+            parse_data = my_request.json()
+            return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
+        else:
+            return HttpResponse(my_request.status_code)
+    except:
+        return HttpResponse('Exception Occured')
+
+
+def get_latest_movie(request):
+    latest_url = base_url+latest_movie
+    try:
+        my_request = requests.get(latest_url)
         if my_request.ok:
             parse_data = my_request.json()
             return JsonResponse(parse_data, status=status.HTTP_201_CREATED)
