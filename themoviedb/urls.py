@@ -22,8 +22,11 @@ urlpatterns = [
 
 
     path('movie/', views.genre_movie_list,  name='Genre Movie List'),
+    path('latest_movie/', views.get_latest_movie,  name='Get Latest Movie List'),
     path('movie/<int:movie_id>/', views.get_movie_id,  name='Movie ID'),
+    path('movie/<int:movie_id>/release_date', views.get_movie_release_date,  name='Movie Release Date'),
     path('movie/<int:movie_id>/credits', views.get_movie_credit,  name='Movie Credits'),
+    path('movie/<int:movie_id>/recommendations', views.get_movie_recommendation,  name='Get Movie Recommendation'),
 
     path('list/', views.create_list,  name='Create List'),
     path('list/<int:list_id>', views.get_list,  name='Get List'),
