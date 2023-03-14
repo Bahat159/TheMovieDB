@@ -22,7 +22,7 @@ urlpatterns = [
 
 
     path('movie/', views.genre_movie_list,  name='Genre Movie List'),
-    path('movie/<int:movie_id>/<int:page_number>', views.get_movie_id,  name='Movie ID'),
+    path('movie/<int:movie_id>/', views.get_movie_id,  name='Movie ID'),
     path('movie/<int:movie_id>/credits', views.get_movie_credit,  name='Movie Credits'),
 
     path('list/', views.create_list,  name='Create List'),
