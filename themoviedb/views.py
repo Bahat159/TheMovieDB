@@ -189,8 +189,8 @@ def get_top_rated_tv(request):
         return HttpResponse('Exception Occured')
 
 
-def get_movie_id(request, movie_id, page_number):
-    movie_id_url = base_url+f'/movie/{movie_id}?api_key={API_KEY}&page={page_number}'
+def get_movie_id(request, movie_id):
+    movie_id_url = base_url+f'/movie/{movie_id}?api_key={API_KEY}'
     try:
         my_request = requests.get(movie_id_url)
         if my_request.ok:
